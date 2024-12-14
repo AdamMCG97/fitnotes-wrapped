@@ -4,6 +4,7 @@ import Card from "./Card";
 import List from "./List";
 import { SlSpeech } from "react-icons/sl";
 import { FaPersonRunning } from "react-icons/fa6";
+import Carousel from "./Carousel";
 
 interface DisplayMetricsProps {
     metrics: WrappedMetrics
@@ -116,20 +117,24 @@ const DisplayMetrics = (props: DisplayMetricsProps) => {
 
 
     return (
-        <div>
-            <Card icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`Total Days Working Out: ${metrics.daysWorkingOut}`} subheading={`That's ${percentageOfTheYear(metrics.daysWorkingOut)}% of the year! \n ${getDisplayStringForChange(metrics.daysWorkingOutChangeFromPy)}`} />
-            <Card icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`Most Worked Muscle Group`} subheading="Where have you been focusing your time and effort this year?" />
-            <Card group={'Most Worked Muscle Group'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Days: ${metrics.mostWorkedMuscleGroupByDays[0].muscleGroup}`} subheading={getSubheadingByMuscleGroup(metrics.mostWorkedMuscleGroupByDays[0].muscleGroup)} list={<List items={muscleGroupByDaysItems} limit={5} />} />
-            <Card group={'Most Worked Muscle Group'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Sets: ${metrics.mostWorkedMuscleGroupBySets[0].muscleGroup}`} subheading={getSubheadingByMuscleGroup(metrics.mostWorkedMuscleGroupBySets[0].muscleGroup)} list={<List items={muscleGroupBySetsItems} limit={5} />} />
-            <Card group={'Most Worked Muscle Group'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Reps: ${metrics.mostWorkedMuscleGroupByReps[0].muscleGroup}`} subheading={getSubheadingByMuscleGroup(metrics.mostWorkedMuscleGroupByReps[0].muscleGroup)} list={<List items={muscleGroupByRepsItems} limit={5} />} />
-            <Card icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`Most Frequent Exercise`} subheading="Which exercise have you been enjoying the most this year?" />
-            <Card group={'Most Frequent Exercise'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Sets: ${metrics.mostSetsByExercise[0].exercise}`} subheading="You loved this one" list={<List items={mostSetsByExerciseItems} limit={5} />} />
-            <Card group={'Most Frequent Exercise'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Reps: ${metrics.mostRepsByExercise[0].exercise}`} subheading="That's some serious volume" list={<List items={mostRepsByExerciseItems} limit={5} />} />
-            <Card icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`Total PRs Set: ${metrics.totalPrs}`} subheading="Each one was hard earned" />
-            <Card group={'Most PRs Set'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Muscle Group: ${metrics.prsByMuscleGroup[0].muscleGroup}`} subheading="You loved this one" list={<List items={prsByMuscleGroupItems} limit={5} />} />
-            <Card group={'Most PRs Set'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Exercise: ${metrics.prsByExercise[0].exercise}`} subheading="That's some serious volume" list={<List items={prsByExerciseItems} limit={5} />} />
-            <Card icon={<SlSpeech size={'7.5em'} />} headline={`Total Comments: ${metrics.comments.length}`} subheading={commentAnalysis(metrics.comments.length)} />
-            <Card icon={<FaPersonRunning size={'7.5em'} />} headline={`Total Cardio: ${metrics.cardioTime} minutes`} subheading={cardioAnalysis(metrics.cardioTime)} />
+        <div className="w-80 pt-6">
+            <Carousel
+                slides={[
+                    <Card icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`Total Days Working Out: ${metrics.daysWorkingOut}`} subheading={`That's ${percentageOfTheYear(metrics.daysWorkingOut)}% of the year! \n ${getDisplayStringForChange(metrics.daysWorkingOutChangeFromPy)}`} />,
+                    <Card icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`Most Worked Muscle Group`} subheading="Where have you been focusing your time and effort this year?" />,
+                    <Card group={'Most Worked Muscle Group'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Days: ${metrics.mostWorkedMuscleGroupByDays[0].muscleGroup}`} subheading={getSubheadingByMuscleGroup(metrics.mostWorkedMuscleGroupByDays[0].muscleGroup)} list={<List items={muscleGroupByDaysItems} limit={5} />} />,
+                    <Card group={'Most Worked Muscle Group'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Sets: ${metrics.mostWorkedMuscleGroupBySets[0].muscleGroup}`} subheading={getSubheadingByMuscleGroup(metrics.mostWorkedMuscleGroupBySets[0].muscleGroup)} list={<List items={muscleGroupBySetsItems} limit={5} />} />,
+                    <Card group={'Most Worked Muscle Group'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Reps: ${metrics.mostWorkedMuscleGroupByReps[0].muscleGroup}`} subheading={getSubheadingByMuscleGroup(metrics.mostWorkedMuscleGroupByReps[0].muscleGroup)} list={<List items={muscleGroupByRepsItems} limit={5} />} />,
+                    <Card icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`Most Frequent Exercise`} subheading="Which exercise have you been enjoying the most this year?" />,
+                    <Card group={'Most Frequent Exercise'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Sets: ${metrics.mostSetsByExercise[0].exercise}`} subheading="You loved this one" list={<List items={mostSetsByExerciseItems} limit={5} />} />,
+                    <Card group={'Most Frequent Exercise'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Reps: ${metrics.mostRepsByExercise[0].exercise}`} subheading="That's some serious volume" list={<List items={mostRepsByExerciseItems} limit={5} />} />,
+                    <Card icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`Total PRs: ${metrics.totalPrs}`} subheading="Each one was hard earned" />,
+                    <Card group={'Most PRs'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Muscle Group: ${metrics.prsByMuscleGroup[0].muscleGroup}`} subheading="You loved this one" list={<List items={prsByMuscleGroupItems} limit={5} />} />,
+                    <Card group={'Most PRs'} icon={<LiaDumbbellSolid size={'7.5em'} />} headline={`By Exercise: ${metrics.prsByExercise[0].exercise}`} subheading="That's some serious volume" list={<List items={prsByExerciseItems} limit={5} />} />,
+                    <Card icon={<SlSpeech size={'7.5em'} />} headline={`Total Comments: ${metrics.comments.length}`} subheading={commentAnalysis(metrics.comments.length)} />,
+                    <Card icon={<FaPersonRunning size={'7.5em'} />} headline={`Total Cardio: ${metrics.cardioTime} minutes`} subheading={cardioAnalysis(metrics.cardioTime)} />
+                ]}
+            />
         </div>
     );
 }

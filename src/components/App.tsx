@@ -26,7 +26,7 @@ const App = () => {
                 <Heading />
             </div>
             <div className={"flex justify-center w-full".concat((isLoading || database !== null) ? "hidden" : "")}>
-                <SingleFileUploader setIsLoading={setIsLoading} setDatabase={setDatabase} />
+                <SingleFileUploader setIsLoading={setIsLoading} setDatabase={setDatabase} setMetrics={setMetrics} />
             </div>
             <div className="flex justify-center items-center">
                 {
