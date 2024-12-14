@@ -1,13 +1,17 @@
 import initSqlJs, { Database } from "sql.js";
+import { WrappedMetrics } from "../domain/WrappedMetrics";
 
 interface SingleFileUploaderProps {
   setIsLoading: (isLoading: boolean) => void;
   setDatabase: (db: Database | null) => void;
+  setMetrics: (metrics: WrappedMetrics | null) => void;
 }
 
 const SingleFileUploader = (props: SingleFileUploaderProps) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
+      props.setMetrics(null);
+      props.setDatabase(null);
       props.setIsLoading(true);
       const reader = new FileReader();
       reader.onload = (readerEvent: ProgressEvent<FileReader>) => {
